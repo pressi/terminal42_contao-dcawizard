@@ -252,6 +252,10 @@ class DcaWizard extends Widget
 
             $config = $generateOperation->invoke($builder, $name, $operation, $record, $this->objDca);
 
+            if (null === $config) {
+                continue;
+            }
+
             /** @var HtmlAttributes $attributes */
             $attributes = $config['attributes'];
 
@@ -334,16 +338,18 @@ class DcaWizard extends Widget
 
             $config = $generateOperation->invoke($builder, $name, $operation, $this->objDca);
 
-            if ($config) {
-                /** @var HtmlAttributes $attributes */
-                $attributes = $config['attributes'];
-
-                if (empty($attributes['onclick'])) {
-                    $attributes->set('data-action', 'click->terminal42--dcawizard#open:prevent');
-                }
-
-                $builder->append($config);
+            if (null === $config) {
+                continue;
             }
+
+            /** @var HtmlAttributes $attributes */
+            $attributes = $config['attributes'];
+
+            if (empty($attributes['onclick'])) {
+                $attributes->set('data-action', 'click->terminal42--dcawizard#open:prevent');
+            }
+
+            $builder->append($config);
         }
 
         return $builder;
