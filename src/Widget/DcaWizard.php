@@ -232,10 +232,10 @@ class DcaWizard extends Widget
                     'method' => $GLOBALS['TL_DCA'][$this->foreignTable]['list']['operations']['new']['method'] ?? 'POST',
                     'primary' => $GLOBALS['TL_DCA'][$this->foreignTable]['list']['operations']['new']['primary'] ?? false,
                 ];
-            } elseif (!isset($GLOBALS['TL_DCA'][$this->strTable]['list']['operations'][$name])) {
+            } elseif (!isset($GLOBALS['TL_DCA'][$this->foreignTable]['list']['operations'][$name])) {
                 continue;
             } else {
-                $operation = $GLOBALS['TL_DCA'][$this->strTable]['list']['operations'][$name];
+                $operation = $GLOBALS['TL_DCA'][$this->foreignTable]['list']['operations'][$name];
             }
 
             if ('-' === $operation) {
